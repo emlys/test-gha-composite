@@ -10,11 +10,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Restore cache
+      - name: Restore cache with composite action
         uses: ./.github/actions/test
+        id: cache1
 
-      - name: Create file
+      - name: Restore cache directly
+        uses: actions/cache@v2
+        with:
+          path: bar.txt
+          key: key2
+        id: cache2
+
+      - name: Create file, if not restored
+        if: steps.cache1.outputs.cache-hit == 'false'
         run: touch foo.txt
+
+      - name: Create file, if not restored
+        if: steps.cache2.outputs.cache-hit == 'false'
+        run: touch bar.txt
 
       - name: Exit
         run: exit ${{ matrix.exit-code }}

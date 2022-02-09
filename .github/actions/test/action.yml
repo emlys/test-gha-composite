@@ -10,6 +10,6 @@ runs:
       uses: actions/cache@v2
       with:
         path: foo.txt
-        key: key123
+        key: key1
       id: cache
 
