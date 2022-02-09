@@ -16,5 +16,5 @@ jobs:
       - name: Create file
         run: touch foo.txt
 
-      - name: Fail
+      - name: Exit
         run: exit ${{ matrix.exit-code }}

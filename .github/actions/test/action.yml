@@ -1,4 +1,8 @@
 name: Run actions/cache
+outputs:
+  cache-hit:
+    description: "True if a cache hit was found, false if not"
+    value: ${{ steps.cache.outputs.cache-hit }}
 runs:
   using: "composite"
   steps:
@@ -6,4 +10,6 @@ runs:
       uses: actions/cache@v2
       with:
         path: foo.txt
-        key: foo
+        key: key123
+      id: cache
+
