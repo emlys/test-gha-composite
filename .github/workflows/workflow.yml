@@ -1,0 +1,18 @@
+name: Test
+on: push
+jobs:
+  test:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        exit-code: [0, 1]
+    steps:
+      - name: Restore cache
+        uses: ./.github/actions/test
+
+      - name: Create file
+        run: touch foo.txt
+
+      - name: Fail
+        run: exit ${{ matrix.exit-code }}

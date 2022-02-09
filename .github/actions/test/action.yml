@@ -1,0 +1,9 @@
+name: Run actions/cache
+runs:
+  using: "composite"
+  steps:
+    - name: Restore cache
+      uses: actions/cache@v2
+      with:
+        path: foo.txt
+        key: foo
