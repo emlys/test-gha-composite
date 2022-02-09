@@ -2,12 +2,14 @@ name: Test
 on: push
 jobs:
   test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         exit-code: [0, 1]
     steps:
+      - uses: actions/checkout@v2
+
       - name: Restore cache
         uses: ./.github/actions/test
 
